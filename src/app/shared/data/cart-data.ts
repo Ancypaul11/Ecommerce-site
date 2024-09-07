@@ -1,0 +1,110 @@
+export const CartData = [
+    {
+      "cartId": 6417,
+      "custId": 379,
+      "productId": 989,
+      "quantity": 1,
+      "productShortName": "tomatefgfgfgfgg",
+      "addedDate": "2024-09-07T04:24:39.53",
+      "productName": "Odisha Rasagola",
+      "categoryName": "Bakery Snacks",
+      "productImageUrl": "https://th.bing.com/th/id/OIP.T-vhVtXOayrciyZQI9x48AHaGl?rs=1&pid=ImgDetMain",
+      "productPrice": 80
+    },
+    {
+      "cartId": 6408,
+      "custId": 1404,
+      "productId": 989,
+      "quantity": 1,
+      "productShortName": "tomatefgfgfgfgg",
+      "addedDate": "2024-09-06T19:18:10.117",
+      "productName": "Odisha Rasagola",
+      "categoryName": "Bakery Snacks",
+      "productImageUrl": "https://th.bing.com/th/id/OIP.T-vhVtXOayrciyZQI9x48AHaGl?rs=1&pid=ImgDetMain",
+      "productPrice": 80
+    },
+    {
+      "cartId": 6403,
+      "custId": 1404,
+      "productId": 1007,
+      "quantity": 1,
+      "productShortName": "watermelon12d",
+      "addedDate": "2024-09-06T16:00:31.023",
+      "productName": "Watermelon 696959",
+      "categoryName": "Fruits & Vegetables",
+      "productImageUrl": "https://www.bigbasket.com/media/uploads/p/m/10000207_25-fresho-watermelon-small.jpg?tr=w-3840,q=80",
+      "productPrice": 100
+    },
+    {
+      "cartId": 6396,
+      "custId": 1352,
+      "productId": 1122,
+      "quantity": 1,
+      "productShortName": "Ram",
+      "addedDate": "2024-09-06T11:47:43.887",
+      "productName": "yes this ",
+      "categoryName": "Cuts & Sprouts",
+      "productImageUrl": "https://api.pizzahut.io/v1/content/en-in/in-1/images/promo/hut300.25d8a775409b50ec421e1bfb74be6937.1.jpg",
+      "productPrice": 100
+    },
+    {
+      "cartId": 6359,
+      "custId": 1385,
+      "productId": 2405,
+      "quantity": 2,
+      "productShortName": "lavan",
+      "addedDate": "2024-09-05T03:25:31.403",
+      "productName": "lavanya",
+      "categoryName": "Exotic Fruits ",
+      "productImageUrl": "https://assets.ajio.com/cms/AJIO/WEB/d-1.0-KHP-010924-topbanner-Z4-3-kgfrendz-ybdnmx-3070.jpg",
+      "productPrice": 100
+    },
+    {
+      "cartId": 6332,
+      "custId": 946,
+      "productId": 989,
+      "quantity": 2,
+      "productShortName": "tomatefgfgfgfgg",
+      "addedDate": "2024-09-02T17:53:35.957",
+      "productName": "Odisha Rasagola",
+      "categoryName": "Bakery Snacks",
+      "productImageUrl": "https://th.bing.com/th/id/OIP.T-vhVtXOayrciyZQI9x48AHaGl?rs=1&pid=ImgDetMain",
+      "productPrice": 80
+    },
+    {
+      "cartId": 6330,
+      "custId": 946,
+      "productId": 2284,
+      "quantity": 1,
+      "productShortName": "tina",
+      "addedDate": "2024-09-02T17:53:33.333",
+      "productName": "lavanyaG",
+      "categoryName": "Snacks",
+      "productImageUrl": "https://www.bigbasket.com/media/uploads/banner_images/B2C061811354-21877-DT-460-all-cm-220624.jpg?tr=w-1920,q=80",
+      "productPrice": 30
+    },
+    {
+      "cartId": 6329,
+      "custId": 1366,
+      "productId": 2284,
+      "quantity": 1,
+      "productShortName": "tina",
+      "addedDate": "2024-09-02T16:48:02.377",
+      "productName": "lavanyaG",
+      "categoryName": "Snacks",
+      "productImageUrl": "https://www.bigbasket.com/media/uploads/banner_images/B2C061811354-21877-DT-460-all-cm-220624.jpg?tr=w-1920,q=80",
+      "productPrice": 30
+    },
+    {
+      "cartId": 6323,
+      "custId": 1352,
+      "productId": 989,
+      "quantity": 1,
+      "productShortName": "tomatefgfgfgfgg",
+      "addedDate": "2024-08-28T12:36:13.59",
+      "productName": "Odisha Rasagola",
+      "categoryName": "Bakery Snacks",
+      "productImageUrl": "https://th.bing.com/th/id/OIP.T-vhVtXOayrciyZQI9x48AHaGl?rs=1&pid=ImgDetMain",
+      "productPrice": 80
+    }
+  ];

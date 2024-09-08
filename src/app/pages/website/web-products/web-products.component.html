@@ -37,16 +37,6 @@
             </div>
           </div>
         </div>
-  
-        <!-- Bank offers -->
-        <div class="row mt-4 mb-3">
-          <h4 class="mb-3">Top Offers</h4>
-          <ng-container *ngFor="let offers of offers$ | async">
-            <div class="col-md-3 mb-4">
-              <offer-card [imageSrc]="offers.offerImageUrl"></offer-card>
-            </div>
-          </ng-container>
-        </div>
       </ng-container>
       <ng-container *ngIf="productList.length == 0">
         <h5 class="empty py-5">No Products Available At the moment!!</h5>

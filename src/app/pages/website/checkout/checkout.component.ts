@@ -35,9 +35,11 @@ export class CheckoutComponent implements OnInit {
     const localData = localStorage.getItem('bigBasket_user');
     if (localData !== null) {
       const data = JSON.parse(localData);
+      if(data.length > 0) {
       data.forEach((item:any) => {
           this.cartItem.push(item);
       })
+    }
     } else {
       this.cartItem = [];
     }
@@ -72,6 +74,9 @@ export class CheckoutComponent implements OnInit {
         }
       })
       localStorage.setItem('bigBasket_user', JSON.stringify(data));
+    }
+    if(this.cartItem.length == 0) {
+      localStorage.setItem('bigBasket_user', '[]');
     }
   }
 }

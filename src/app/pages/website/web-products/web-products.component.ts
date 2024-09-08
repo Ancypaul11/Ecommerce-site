@@ -18,8 +18,6 @@ export class WebProductsComponent {
   productList: any[] = [];
   categoryList: any[] = [];
   loggedInObj: any = {};
-  isAddToCartApiCallInProgress: boolean = false;
-  offers$: Observable<any[]> | undefined;
   currentIndex = 0;
   productsToShow: any[] = [];
 
@@ -58,6 +56,7 @@ export class WebProductsComponent {
       };
       this.loggedInObj.push(addToCartObj);
       localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
+      this.router.navigate(['/checkout']);
     } else {
       this.loggedInObj = [];
       const addToCartObj = {
@@ -72,6 +71,7 @@ export class WebProductsComponent {
       };
       this.loggedInObj.push(addToCartObj);
       localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
+      this.router.navigate(['/checkout']);
     }
   }
 

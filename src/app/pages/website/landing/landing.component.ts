@@ -22,21 +22,7 @@ export class LandingComponent implements OnInit {
   productList: any[] = [];
   categoryList: any[] = [];
   cartList: any[] = [];
-  loginObj: loginObject = new loginObject();
-  userLoginObj: userLoginObject = new userLoginObject();
-  registerObj: registerObject = new registerObject();
-  profileObj: userProfileObject = new userProfileObject();
   loggedInObj: any = {};
-  displayModalLogin: boolean = false;
-  displayModalRegistration: boolean = false;
-  displayModalProfile: boolean = false;
-  rememberMe: boolean = false;
-  showLoginPassword: boolean = false;
-  showRegisterPassword: boolean = false;
-  showProfilePassword: boolean = false;
-  isApiCallInProgress: boolean = false;
-  phonePattern: string = "^((\\+91-?)|0)?[0-9]{10}$";
-  passwordPattern: any = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-])/;
 
   constructor(
     private router: Router, 
@@ -46,7 +32,6 @@ export class LandingComponent implements OnInit {
       this.loggedInObj = JSON.parse(localData);
       this.getCartByCustomerId(this.loggedInObj.custId);
     }
-    console.log(this.loggedInObj.custId)
   }
 
   ngOnInit(): void {
@@ -70,6 +55,9 @@ export class LandingComponent implements OnInit {
       })
       localStorage.setItem('bigBasket_user', JSON.stringify(data));
     }
+    if(this.cartList.length == 0) {
+      localStorage.setItem('bigBasket_user', '[]');
+    }
   }
 
   getCartByCustomerId(custId: number) {
@@ -77,9 +65,11 @@ export class LandingComponent implements OnInit {
     const localData = localStorage.getItem('bigBasket_user');
     if (localData !== null) {
       const data = JSON.parse(localData);
+      if(data.length > 0) {
       data.forEach((item:any) => {
           this.cartList.push(item);
       })
+    }
     } else {
       this.cartList = [];
     }
@@ -143,53 +133,5 @@ export class LandingComponent implements OnInit {
     this.categoryList.forEach((category: any) => {
       category.subcategories = undefined;
     });
-  }
-}
-
-export class loginObject {
-  UserName: string;
-  UserPassword: string;
-
-  constructor() {
-    this.UserName = '';
-    this.UserPassword = '';
-  }
-}
-
-export class userLoginObject {
-  EmailId: string;
-  Password: string;
-
-  constructor() {
-    this.EmailId = 'rinku@gmail.com';
-    this.Password = 'Rinku@1';
-  }
-}
-
-export class registerObject {
-  CustId: number;
-  Name: string;
-  MobileNo: string;
-  Password: string;
-
-  constructor() {
-    this.CustId = 0;
-    this.Name = '';
-    this.MobileNo = '';
-    this.Password = '';
-  }
-}
-
-export class userProfileObject {
-  custId: number;
-  name: string;
-  mobileNo: string;
-  password: string;
-
-  constructor() {
-    this.custId = 0;
-    this.name = '';
-    this.mobileNo = '';
-    this.password = '';
   }
 }

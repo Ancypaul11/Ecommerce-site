@@ -8,7 +8,7 @@ import { LoginComponent } from './pages/admin/login/login.component';
 export const routes: Routes = [
     {
       path: '',
-      redirectTo: 'AllProducts',
+      redirectTo: 'login',
       pathMatch: 'full'
     },
     {

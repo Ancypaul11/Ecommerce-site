@@ -58,6 +58,7 @@ export class CategoryProductsComponent {
       this.loggedInObj.push(addToCartObj);
       console.log(this.loggedInObj)
       localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
+      this.router.navigate(['/checkout']);
     }
     else {
       this.loggedInObj = [];
@@ -73,6 +74,7 @@ export class CategoryProductsComponent {
       };
       this.loggedInObj.push(addToCartObj);
       localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
+      this.router.navigate(['/checkout']);
     }
   }
 

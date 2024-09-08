@@ -78,3 +78,7 @@
     height: 50px !important;
     width: 80px !important;
   }
+
+  .dropdown-menu {
+    --bs-dropdown-min-width: 22rem !important;
+  }

@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-// import { ProductService } from '../../../services/product/product.service';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { OfferCardComponent } from '../../../shared/components/offer-card/offer-card.component';
 import { Observable } from 'rxjs';
 import { ProductData } from '../../../shared/data/product-data';
 import { CategoryData } from '../../../shared/data/category-data';
-// import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'web-products-products',
   standalone: true,
@@ -26,11 +24,9 @@ export class WebProductsComponent {
   productsToShow: any[] = [];
 
   constructor(
-    // private prodSrv: ProductService,
     private router: Router, 
-    // private toastr: ToastrService
   ) {
-    const localData = sessionStorage.getItem('bigBasket_user');
+    const localData = localStorage.getItem('loggedUser');
     if (localData !== null) {
       const parseObj = JSON.parse(localData);
       this.loggedInObj = parseObj;
@@ -40,7 +36,6 @@ export class WebProductsComponent {
   ngOnInit(): void {
     this.getAllProducts();
     this.getAllCategory();
-    // this.offers$ = this.prodSrv.getAllOffers();
   }
 
   navigateToProducts(id: number) {
@@ -48,7 +43,7 @@ export class WebProductsComponent {
   }
 
   addToCart(product: any) {
-    const localData = sessionStorage.getItem('bigBasket_user');
+    const localData = localStorage.getItem('bigBasket_user');
     if (localData !== null) {
       this.loggedInObj = JSON.parse(localData);
       const addToCartObj = {
@@ -56,43 +51,38 @@ export class WebProductsComponent {
         "custId": this.loggedInObj.custId,
         "productId": product.productId,
         "quantity": product.quantity || 1,
-        "addedDate": new Date()
+        "addedDate": new Date(),
+        "productImageUrl": product.productImageUrl,
+        "productShortName": product.productShortName,
+        "productPrice": product.productPrice
       };
-      if (!product.isAddToCartApiCallInProgress) {
-        product.isAddToCartApiCallInProgress = true;
-        // this.prodSrv.addToCart(addToCartObj).subscribe((res: any) => {
-        //   if (res.result) {
-        //     product.isAddToCartApiCallInProgress = false;
-        //     this.toastr.success("Product Added to cart");
-        //     this.prodSrv.cartUpdated$.next(true);
-        //   } else {
-        //     product.isAddToCartApiCallInProgress = false;
-        //     this.toastr.error(res.message ? res.message : "Error adding product to cart");
-        //   }
-        // },
-        //   (err: any) => {
-        //     product.isAddToCartApiCallInProgress = false;
-        //     this.toastr.error(err.message ? err.message : "An error occurred while adding the product to the cart. Please try again later.");
-        //   });
-      }
+      this.loggedInObj.push(addToCartObj);
+      localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
     } else {
-      // this.toastr.warning("Please Login To Add Product");
+      this.loggedInObj = [];
+      const addToCartObj = {
+        "cartId": 0,
+        "custId": this.loggedInObj.custId,
+        "productId": product.productId,
+        "quantity": product.quantity || 1,
+        "addedDate": new Date(),
+        "productImageUrl": product.productImageUrl,
+        "productShortName": product.productShortName,
+        "productPrice": product.productPrice
+      };
+      this.loggedInObj.push(addToCartObj);
+      localStorage.setItem('bigBasket_user', JSON.stringify(this.loggedInObj));
     }
   }
 
   getAllProducts() {
     this.productList = ProductData;
-    // this.prodSrv.getProducts().subscribe((res: any) => {
       this.productList = ProductData;
       this.productsToShow = this.productList.slice(this.currentIndex, this.currentIndex + 4);
-    // });
   }
 
   getAllCategory() {
-    // this.prodSrv.getCategory().subscribe((res: any) => {
-    //   // Get top-level categories (parentCategoryId = 0)
       this.categoryList = CategoryData.filter((list: any) => list.parentCategoryId === 0);
-    // });
   }
 
   increment(product: any) {

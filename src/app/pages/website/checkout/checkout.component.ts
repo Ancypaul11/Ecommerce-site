@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-// import { ProductService } from '../../../services/product/product.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -19,57 +17,35 @@ export class CheckoutComponent implements OnInit {
   isApiCallInProgress: boolean = false;
 
   constructor(
-    // private prodSrv: ProductService, 
     private router: Router, 
-    // private toastr: ToastrService
   ) {
-    const localData = sessionStorage.getItem('bigBasket_user');
+    const localData = localStorage.getItem('loggedUser');
     if (localData !== null) {
       const parseObj = JSON.parse(localData);
       this.loggedInObj = parseObj;
       this.getCartByCustomerId(this.loggedInObj.custId);
     }
-    // this.prodSrv.cartUpdated$.subscribe((res: any) => {
-    //   if (res) {
-    //     this.getCartByCustomerId(this.loggedInObj.custId);
-    //   }
-    // });
   }
 
   ngOnInit(): void {
   }
 
   getCartByCustomerId(custId: number) {
-    // this.prodSrv.getCartDataByCustId(custId).subscribe((res: any) => {
-    //   this.cartItem = res.data;
-    //   if (!this.cartItem || this.cartItem.length === 0) {
-    //     this.router.navigate(['/AllProducts']);
-    //   }
-    // });
+    this.cartItem = [];
+    const localData = localStorage.getItem('bigBasket_user');
+    if (localData !== null) {
+      const data = JSON.parse(localData);
+      data.forEach((item:any) => {
+          this.cartItem.push(item);
+      })
+    } else {
+      this.cartItem = [];
+    }
   }
 
   placeCartOrder(placeOrderFrm: NgForm) {
     if (placeOrderFrm.valid) {
-      if (!this.isApiCallInProgress) {
-        this.isApiCallInProgress = true;
-        this.placeOrderObj.CustId = this.loggedInObj.custId;
-        this.placeOrderObj.TotalInvoiceAmount = this.calculateTotalSubtotal();
-        // this.prodSrv.placeOrder(this.placeOrderObj).subscribe((res: any) => {
-        //   if (res.result) {
-        //     this.isApiCallInProgress = false;
-        //     this.toastr.success(res.message);
-        //     this.prodSrv.cartUpdated$.next(true);
-        //     this.placeOrderObj = new placeOrderObject();
-        //     this.router.navigateByUrl('AllProducts');
-        //   } else {
-        //     this.isApiCallInProgress = false;
-        //     this.toastr.error(res.message);
-        //   }
-        // }, (err: any) => {
-        //   this.isApiCallInProgress = false;
-        //   this.toastr.error(err.message);
-        // });
-      }
+      console.log(placeOrderFrm.value);
     } else {
       Object.values(placeOrderFrm.controls).forEach((control: any) => {
         control.markAsTouched();
@@ -86,10 +62,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   deleteProductFromCartById(cartId: number) {
-  //   this.prodSrv.removeProductByCartId(cartId).subscribe((res: any) => {
-  //     this.prodSrv.cartUpdated$.next(true);
-  //     this.getCartByCustomerId(this.loggedInObj.custId);
-  //   });
+    const localData = localStorage.getItem('bigBasket_user');
+    let data:any = [];
+    if (localData !== null) {
+      this.cartItem.filter((cart) => {
+        if (cart.productId == cartId) {
+          this.cartItem.splice(cart,1);
+          data.push(cart);
+        }
+      })
+      localStorage.setItem('bigBasket_user', JSON.stringify(data));
+    }
   }
 }
 
